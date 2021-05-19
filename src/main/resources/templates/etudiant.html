@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		.bg-color-1{
+			background-color: #edf0f3;
+		}
+	</style>
+</head>
+<body>
+	<section layout:fragment="leftSideList">
+		<div id="list-example" class="list-group">
+			<a class="list-group-item list-group-item-action" th:href="@{/student/profs}">
+				Etudiant- Mes Profs			
+			</a> 
+			<a class="list-group-item list-group-item-action" th:href="@{/student/cours}">
+				Etudiant- Mes Cours				
+			</a> 
+		</div>
+	</section>
+	<section layout:fragment="content">
+		<div class="card">
+		  <div class="card-header bg-primary text-light text-center">
+		  	Test
+		  </div>
+		  <div class="card-body bg-color-1">
+		  	<div th:if="${#request.requestURI == '/student/profs'}">
+		  		<table class="table table-sm table-light table-hover text-center">
+				  <thead class="bg-dark text-light">
+				    <tr>
+				      <th scope="col">Nom</th>
+				      <th scope="col">Prenom</th>
+				      <th scope="col">Email</th>
+				      <th scope="col">Tele</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr th:each="p:${profs}">
+				      <td th:text="${p.nom}"></td>
+				      <td th:text="${p.prenom}"></td>
+				      <td th:text="${p.email}"></td>
+				      <td th:text="${p.tele}"></td>
+				    </tr>
+				  </tbody>
+				</table>
+		  	</div>
+		  	<div th:if="${#request.requestURI == '/student/cours'}">
+		  		<table class="table table-sm table-light table-hover text-center">
+				  <thead class="bg-dark text-light">
+				    <tr>
+				      <th scope="col">Matiere</th>
+				      <th scope="col">Salle</th>
+				      <th scope="col">Date</th>
+				      <th scope="col">Heure debut</th>
+				      <th scope="col">Heure fin</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr th:each="c:${cours}">
+				      <th scope="row" th:text="${c.matiere.libele}"></th>
+				      <td th:text="${c.salle}"></td>
+				      <td th:text="${c.dateCours}"></td>
+				      <td th:text="${c.heureDebut}"></td>
+				      <td th:text="${c.heureFin}"></td>
+				    </tr>
+				  </tbody>
+				</table>
+		  	</div>
+		  </div>
+		</div>
+	</section>
+</body>
+</html>
+
+
+
+
+
+

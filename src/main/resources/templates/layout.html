@@ -21,14 +21,40 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
+				<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+			</ul>
+			<ul class="navbar-nav ml-auto" sec:authorize="hasRole('ROLE_STUDENT')">
+				<li class="nav-item active"><a class="nav-link" th:href="@{/student}">Profile
+						<span class="sr-only">(current)</span>
+				</a></li>
+			</ul>
+			<ul class="navbar-nav ml-auto" sec:authorize="hasRole('ROLE_DIRE')">
+				<li class="nav-item active"><a class="nav-link" th:href="@{/directeur}">Profile
+						<span class="sr-only">(current)</span>
+				</a></li>
+			</ul>
+			<ul class="navbar-nav ml-auto" sec:authorize="hasRole('ROLE_PROF')">
+				<li class="nav-item active"><a class="nav-link" th:href="@{/prof}">Profile
+						<span class="sr-only">(current)</span>
+				</a></li>
+			</ul>
+			<ul class="navbar-nav ml-5" sec:authorize="isAnonymous()">
+				<li class="nav-item active"><a class="nav-link" th:href="@{/login}">login
+						<span class="sr-only">(current)</span>
+				</a></li>
+			</ul>
+			<ul class="navbar-nav ml-5"  sec:authorize="isAuthenticated()">
+				<li class="nav-item active"><a class="nav-link" th:href="@{/logout}">logout
+						<span class="sr-only">(current)</span>
+				</a></li>
 			</ul>
 		</div>
 	</nav>
-
+	
+	<section layout:fragment="index"></section>
+	
 	<div class="container mt-4">
 		<div class="row">
 			<div class="col-3 mr-5">

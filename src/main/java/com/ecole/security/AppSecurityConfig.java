@@ -34,6 +34,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/prof/**").hasRole("PROF")
 			.antMatchers("/directeur/**").hasRole("DIRE")
 			.antMatchers("/student/**").hasRole("STUDENT")
+			.antMatchers("/**").permitAll()
 			.anyRequest().authenticated();
 	}
 	
